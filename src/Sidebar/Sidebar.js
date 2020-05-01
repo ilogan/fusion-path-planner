@@ -11,12 +11,14 @@ const SidebarContainer = styled.aside({
   height: '100vh',
   minWidth: '15rem',
   padding: '1rem',
-  backgroundColor: '#394648',
+  boxShadow: '0 4px 4px rgba(0,0,0,20%)',
+  backgroundColor: '#2D3748',
+  zIndex: '1',
   color: '#FFFFFF',
 });
 
 const LogoContainer = styled.nav({
-  marginBottom: '1rem',
+  marginBottom: '2rem',
   textAlign: 'center',
   borderBottom: '1px solid #FFFFFF',
 });
