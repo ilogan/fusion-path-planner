@@ -2,6 +2,8 @@
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
+import { useState } from 'react';
+
 const FormContainer = styled.form({
   padding: '.75rem',
   backgroundColor: '#FFFFFF',
@@ -19,17 +21,46 @@ const Row = styled.div({
 });
 
 function CollectionListScreen() {
+  const [collectionName, setCollectionName] = useState('');
+  const [tierName, setTierName] = useState('');
+  const [nodeName, setNodeName] = useState('');
+  const [isPrefixed, setIsPrefixed] = useState(true);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({
+      collectionName,
+      tierName,
+      isPrefixed,
+      nodeName,
+    });
+    setCollectionName('');
+    setTierName('');
+    setIsPrefixed(true);
+    setNodeName('');
+  };
+
   return (
     <div>
       <h3>Add a Collection</h3>
-      <FormContainer>
+      <FormContainer onSubmit={handleSubmit}>
         <FormGroup>
-          <label htmlFor="name">Collection name:</label>
-          <input id="name" type="text" />
+          <label htmlFor="collection">Collection name:</label>
+          <input
+            id="collection"
+            type="text"
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+          />
         </FormGroup>
         <FormGroup>
           <label htmlFor="tier">Tier name:</label>
-          <input id="tier" type="text" />
+          <input
+            id="tier"
+            type="text"
+            value={tierName}
+            onChange={(e) => setTierName(e.target.value)}
+          />
           <Row
             css={{
               justifyContent: 'space-around',
@@ -41,19 +72,36 @@ function CollectionListScreen() {
               <label htmlFor="pre" css={{ marginRight: '.25rem' }}>
                 pre
               </label>
-              <input id="pre" name="order" type="radio" />
+              <input
+                id="pre"
+                name="order"
+                type="radio"
+                checked={isPrefixed}
+                onChange={() => setIsPrefixed(true)}
+              />
             </div>
             <div>
               <label htmlFor="post" css={{ marginRight: '.25rem' }}>
                 post
               </label>
-              <input id="post" name="order" type="radio" />
+              <input
+                id="post"
+                name="order"
+                type="radio"
+                checked={!isPrefixed}
+                onChange={() => setIsPrefixed(false)}
+              />
             </div>
           </Row>
         </FormGroup>
         <FormGroup>
           <label htmlFor="node">Node name:</label>
-          <input id="node" type="text" />
+          <input
+            id="node"
+            type="text"
+            value={nodeName}
+            onChange={(e) => setNodeName(e.target.value)}
+          />
         </FormGroup>
         <FormGroup>
           <button type="submit">+ Add</button>
