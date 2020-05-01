@@ -10,7 +10,6 @@ import HomeScreen from './HomeScreen';
 // This wraps the routes
 const DashboardContainer = styled.div({
   flexGrow: 5,
-  backgroundColor: 'blue',
 });
 
 function Dashboard() {

@@ -14,7 +14,7 @@ const CollectionListScreenContainer = styled.div({});
 const NavSpacer = styled.div({
   height: '3rem',
   marginBottom: '1rem',
-  backgroundColor: 'gray',
+  boxShadow: '0px 0px 4px rgba(0,0,0,20%)',
 });
 
 const CollectionListContentContainer = styled.div({

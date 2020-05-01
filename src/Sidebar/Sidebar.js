@@ -11,20 +11,30 @@ const SidebarContainer = styled.aside({
   height: '100vh',
   minWidth: '15rem',
   padding: '1rem',
-  backgroundColor: 'red',
+  backgroundColor: '#394648',
+  color: '#FFFFFF',
 });
 
 const LogoContainer = styled.nav({
   marginBottom: '1rem',
   textAlign: 'center',
-  border: '1px solid black',
+  borderBottom: '1px solid #FFFFFF',
 });
 
 function Sidebar() {
   return (
     <SidebarContainer>
       <LogoContainer>
-        <Link to="collections">Home</Link>
+        <Link
+          css={{
+            color: '#F5CB5C',
+            fontSize: '1.25rem',
+            '&:hover': { textDecoration: 'none', color: ' #F5CB5C' },
+          }}
+          to="collections"
+        >
+          Fusion Path Planner
+        </Link>
       </LogoContainer>
       <SidebarRoutes />
     </SidebarContainer>

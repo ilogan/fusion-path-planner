@@ -14,7 +14,7 @@ const NavbarContainer = styled.nav({
   height: '3rem',
   marginBottom: '1rem',
   padding: '1rem',
-  backgroundColor: 'green',
+  boxShadow: '0px 0px 4px rgba(0,0,0,20%)',
 });
 
 const CollectionContainer = styled.div({
