@@ -1,15 +1,19 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
-
+import { useCollections } from '../../context/collectionsContext';
 /*
  * /collections/:id
  */
 
 function HomeScreen() {
-  return (
+  const { collection } = useCollections();
+  const { name } = collection;
+  return collection.name ? (
     <div>
-      <h1>Collection home page!</h1>
+      <h1>{name} Dashboard</h1>
     </div>
+  ) : (
+    <div>No Collection found</div>
   );
 }
 
