@@ -27,7 +27,8 @@ const CollectionContainer = styled.div({
 function Collection({ children }) {
   const location = useLocation();
   const { collection, collections, setCollection } = useCollections();
-  const name = collection ? collection.name : 'A name should be here';
+  const { name } = collection;
+  console.log('name', name);
 
   useEffect(() => {
     console.log('Collection useEffect', location, collections, collection);
@@ -38,7 +39,7 @@ function Collection({ children }) {
 
   return (
     <div>
-      <NavbarContainer>{name}</NavbarContainer>
+      <NavbarContainer>{name ? name : ''}</NavbarContainer>
       <CollectionContainer>{children}</CollectionContainer>
     </div>
   );
