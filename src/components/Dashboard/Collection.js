@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useLocation } from '@reach/router';
 import { useCollections } from '../../context/collectionsContext';
@@ -27,15 +27,20 @@ const CollectionContainer = styled.div({
 function Collection({ children }) {
   const location = useLocation();
   const { collection, collections, setCollection } = useCollections();
+  const [id, setId] = useState(null);
+
   const { name } = collection;
-  console.log('name', name);
+
+  // only change set id if location id differs from current id
+  useEffect(() => {
+    const currId = Number(location.pathname.split('/')[2]);
+    if (currId !== id) setId(currId);
+  }, [location, id, setId]);
 
   useEffect(() => {
-    console.log('Collection useEffect', location, collections, collection);
-    const id = Number(location.pathname.slice(-1));
     const currentCollection = collections.find((c) => c.id === id);
-    setCollection(currentCollection);
-  }, [location, collections, setCollection, collection]);
+    if (currentCollection) setCollection(currentCollection);
+  }, [id, collections, setCollection, collection]);
 
   return (
     <div>
