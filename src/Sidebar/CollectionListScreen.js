@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
-
+import { useCollections } from '../context/collectionsContext';
 const FormContainer = styled.form({
   padding: '.75rem',
   backgroundColor: '#FFFFFF',
@@ -21,6 +21,7 @@ const Row = styled.div({
 });
 
 function CollectionListScreen() {
+  const [collections, setCollections] = useCollections();
   const [collectionName, setCollectionName] = useState('');
   const [tierName, setTierName] = useState('');
   const [nodeName, setNodeName] = useState('');
@@ -28,12 +29,16 @@ function CollectionListScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({
-      collectionName,
-      tierName,
-      isPrefixed,
-      nodeName,
-    });
+    setCollections([
+      ...collections,
+      {
+        id: collections.length + 1,
+        collectionName,
+        tierName,
+        isPrefixed,
+        nodeName,
+      },
+    ]);
     setCollectionName('');
     setTierName('');
     setIsPrefixed(true);
