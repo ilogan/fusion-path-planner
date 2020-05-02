@@ -28,11 +28,14 @@ function Collection({ children }) {
   const location = useLocation();
   const { collection, collections, setCollection } = useCollections();
   const name = collection ? collection.name : 'A name should be here';
+
   useEffect(() => {
+    console.log('Collection useEffect', location, collections, collection);
     const id = Number(location.pathname.slice(-1));
     const currentCollection = collections.find((c) => c.id === id);
     setCollection(currentCollection);
   }, [location, collections, setCollection, collection]);
+
   return (
     <div>
       <NavbarContainer>{name}</NavbarContainer>
