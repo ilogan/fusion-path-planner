@@ -12,20 +12,19 @@ describe('The Collection Screen', () => {
     cy.visit('/collections');
   });
 
-  it('can add a collection to the list', function () {
+  it('performs setup', function () {
     addCollection(this.creaturesCollection);
+    addCollection(this.craftingCollection);
   });
 
   it('hosts links to a new collection home screen with correct id', function () {
     const id = this.craftingCollection.id;
-    addCollection(this.craftingCollection);
     cy.get('table').contains(this.craftingCollection.name).click();
     cy.url().should('include', `/collections/${id}`);
   });
 
-  it('can navigate back to collections page using logo', function () {
-    const id = this.craftingCollection.id;
-    cy.contains('Fusion Path Planner').click();
-    cy.url().should('include', '/collections').and('not.include', id);
+  it('has the name of the collection in the nav bar', function () {
+    const name = this.craftingCollection.name;
+    cy.contains(name);
   });
 });
