@@ -21,7 +21,13 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "globals": {
+      "cy": true
+    },
+    "extends": "react-app",
+    "rules": {
+      "react/jsx-key": 1
+    }
   },
   "browserslist": {
     "production": [

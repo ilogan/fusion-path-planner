@@ -42,10 +42,10 @@ function CollectionListScreen() {
           </thead>
           <tbody>
             {collections.map((c) => (
-              <tr>
-                <Link to={`/collections/${c.id}`}>
-                  <td>{c.collectionName}</td>
-                </Link>
+              <tr key={c.id}>
+                <td>
+                  <Link to={`/collections/${c.id}`}>{c.collectionName}</Link>
+                </td>
                 <td>{c.tierName}</td>
                 <td>{c.nodeName}</td>
               </tr>
