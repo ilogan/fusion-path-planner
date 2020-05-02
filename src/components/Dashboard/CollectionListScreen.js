@@ -26,7 +26,7 @@ const TableContainer = styled.table({
 });
 
 function CollectionListScreen() {
-  const [collections] = useCollections();
+  const { collections } = useCollections();
   return (
     <CollectionListScreenContainer>
       <NavSpacer />
@@ -44,10 +44,10 @@ function CollectionListScreen() {
             {collections.map((c) => (
               <tr key={c.id}>
                 <td>
-                  <Link to={`/collections/${c.id}`}>{c.collectionName}</Link>
+                  <Link to={`/collections/${c.id}`}>{c.name}</Link>
                 </td>
-                <td>{c.tierName}</td>
-                <td>{c.nodeName}</td>
+                <td>{c.tier}</td>
+                <td>{c.node}</td>
               </tr>
             ))}
           </tbody>

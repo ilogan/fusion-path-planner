@@ -21,11 +21,11 @@ const Row = styled.div({
 });
 
 function CollectionListScreen() {
-  const [collections, setCollections] = useCollections();
+  const { collections, setCollections } = useCollections();
   const [collectionName, setCollectionName] = useState('');
   const [tierName, setTierName] = useState('');
   const [nodeName, setNodeName] = useState('');
-  const [isPrefixed, setIsPrefixed] = useState(true);
+  const [isPrefix, setIsPrefix] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,15 +33,15 @@ function CollectionListScreen() {
       ...collections,
       {
         id: collections.length + 1,
-        collectionName,
-        tierName,
-        isPrefixed,
-        nodeName,
+        name: collectionName,
+        tier: tierName,
+        isPrefix,
+        node: nodeName,
       },
     ]);
     setCollectionName('');
     setTierName('');
-    setIsPrefixed(true);
+    setIsPrefix(true);
     setNodeName('');
   };
 
@@ -81,8 +81,8 @@ function CollectionListScreen() {
                 id="pre"
                 name="order"
                 type="radio"
-                checked={isPrefixed}
-                onChange={() => setIsPrefixed(true)}
+                checked={isPrefix}
+                onChange={() => setIsPrefix(true)}
               />
             </div>
             <div>
@@ -93,8 +93,8 @@ function CollectionListScreen() {
                 id="post"
                 name="order"
                 type="radio"
-                checked={!isPrefixed}
-                onChange={() => setIsPrefixed(false)}
+                checked={!isPrefix}
+                onChange={() => setIsPrefix(false)}
               />
             </div>
           </Row>

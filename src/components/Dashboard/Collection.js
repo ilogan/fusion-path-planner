@@ -2,7 +2,10 @@
 import { jsx } from '@emotion/core';
 
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 
+import { useLocation } from '@reach/router';
+import { useCollections } from '../../context/collectionsContext';
 /*
  * /collections/:id
  */
@@ -22,9 +25,17 @@ const CollectionContainer = styled.div({
 });
 
 function Collection({ children }) {
+  const location = useLocation();
+  const { collection, collections, setCollection } = useCollections();
+  const name = collection ? collection.name : 'A name should be here';
+  useEffect(() => {
+    const id = Number(location.pathname.slice(-1));
+    const currentCollection = collections.find((c) => c.id === id);
+    setCollection(currentCollection);
+  }, [location, collections, setCollection, collection]);
   return (
     <div>
-      <NavbarContainer>This is the navbar!</NavbarContainer>
+      <NavbarContainer>{name}</NavbarContainer>
       <CollectionContainer>{children}</CollectionContainer>
     </div>
   );
