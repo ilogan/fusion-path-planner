@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core';
 
 import styled from '@emotion/styled';
 import { Router, Link } from '@reach/router';
+
 import CollectionListScreen from './CollectionListScreen';
 import HomeScreen from './HomeScreen';
 
@@ -47,6 +48,7 @@ function SidebarRoutes() {
   return (
     <Router>
       <CollectionListScreen path="collections" />
+
       <Collection path="collections/:id">
         <HomeScreen path="/" />
       </Collection>

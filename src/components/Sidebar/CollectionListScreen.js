@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { useState } from 'react';
-import { useCollections } from '../context/collectionsContext';
+import { useCollections } from '../../context/collectionsContext';
 const FormContainer = styled.form({
   padding: '.75rem',
   backgroundColor: '#FFFFFF',

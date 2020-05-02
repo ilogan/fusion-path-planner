@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 
 import styled from '@emotion/styled';
 import { Link } from '@reach/router';
-import { useCollections } from '../context/collectionsContext';
+import { useCollections } from '../../context/collectionsContext';
 /*
  * /collections
  */
