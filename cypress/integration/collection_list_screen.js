@@ -12,7 +12,19 @@ describe('The Collection Screen', () => {
 
   it('can add a collection to the list', function () {
     addCollection(this.creaturesCollection);
+  });
+
+  it('hosts links to a new collection home screen with correct id', function () {
+    const id = this.craftingCollection.id;
     addCollection(this.craftingCollection);
+    cy.get('table').contains(this.craftingCollection.name).click();
+    cy.url().should('include', `/collections/${id}`);
+  });
+
+  it('can navigate back to collections page using logo', function () {
+    const id = this.craftingCollection.id;
+    cy.contains('Fusion Path Planner').click();
+    cy.url().should('include', '/collections').and('not.include', id);
   });
 });
 
@@ -22,7 +34,8 @@ function addCollection({ name, tier, isPrefix, node }) {
   if (!isPrefix) cy.get('#post').click();
   cy.get('#node').type(node);
   cy.get('button').contains('Add').click();
-  cy.get('table').should('contain', name);
-  cy.get('table').should('contain', tier);
-  cy.get('table').should('contain', node);
+  cy.get('table')
+    .should('contain', name)
+    .and('contain', tier)
+    .and('contain', node);
 }
