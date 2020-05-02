@@ -1,0 +1,18 @@
+{
+  "collections": [
+    {
+      "id": 1,
+      "name": "Creature Game",
+      "tier": "Stars",
+      "isPrefix": false,
+      "node": "Creature"
+    },
+    {
+      "id": 2,
+      "name": "Crafting Game",
+      "tier": "Tier",
+      "isPrefix": true,
+      "node": "Item"
+    }
+  ]
+}

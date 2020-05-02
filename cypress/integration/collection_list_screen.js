@@ -1,25 +1,18 @@
 describe('The Collection Screen', () => {
-  const creatureCollection = {
-    name: 'Creature Game',
-    tier: 'Stars',
-    isPrefix: false,
-    node: 'Creature',
-  };
+  beforeEach(function () {
+    cy.fixture('collections').then((f) => {
+      this.creaturesCollection = f.collections[0];
+      this.craftingCollection = f.collections[1];
+    });
+  });
 
-  const craftingCollection = {
-    name: 'Crafting Game',
-    tier: 'Tier',
-    isPrefix: true,
-    node: 'Item',
-  };
-
-  it('successfully loads', () => {
+  it('successfully loads', function () {
     cy.visit('/collections');
   });
 
-  it('can add a collection to the list', () => {
-    addCollection(creatureCollection);
-    addCollection(craftingCollection);
+  it('can add a collection to the list', function () {
+    addCollection(this.creaturesCollection);
+    addCollection(this.craftingCollection);
   });
 });
 
