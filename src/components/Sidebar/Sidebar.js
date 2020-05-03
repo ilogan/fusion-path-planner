@@ -9,7 +9,8 @@ import HomeScreen from './HomeScreen';
 
 // SIDEBAR
 const SidebarContainer = styled.aside({
-  height: '100vh',
+  height: 'auto',
+  minHeight: '100vh',
   minWidth: '15rem',
   padding: '1rem',
   boxShadow: '0 4px 4px rgba(0,0,0,20%)',
