@@ -6,6 +6,7 @@ import { Router } from '@reach/router';
 import CollectionListScreen from './CollectionListScreen';
 import Collection from './Collection';
 import HomeScreen from './HomeScreen';
+import TreeScreen from './TreeScreen';
 
 // This wraps the routes
 const DashboardContainer = styled.div({
@@ -27,6 +28,7 @@ function DashRoutes() {
       {/* Collection prepends the route name and adds a navbar at the top of the dashboard */}
       <Collection path="collections/:id">
         <HomeScreen path="/" />
+        <TreeScreen path="/tree" />
       </Collection>
     </Router>
   );
