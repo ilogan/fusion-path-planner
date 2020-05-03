@@ -36,11 +36,16 @@ function HomeScreen() {
     e.preventDefault();
     const updatedWrappers = [
       ...collection.wrappers,
-      { id: collection.wrappers.length + 1, name: wrapperName, tier, fields },
+      {
+        id: collection.wrappers.length + 1,
+        name: wrapperName,
+        tier: +tier,
+        fields,
+      },
     ];
     setCollection({ ...collection, wrappers: updatedWrappers });
     setWrapperName('');
-    setTier('');
+    setTier(0);
     setFields([]);
   };
 
