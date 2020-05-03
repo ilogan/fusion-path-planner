@@ -1,15 +1,19 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 
-import { useLocation } from '@reach/router';
+import { useLocation, Link } from '@reach/router';
 import { useCollections } from '../../context/collectionsContext';
 
 /*
  * /collections/:id
  */
+
+const homeLink = css({
+  fontWeight: 'bold',
+});
 
 const NavbarContainer = styled.nav({
   display: 'flex',
@@ -19,6 +23,12 @@ const NavbarContainer = styled.nav({
   marginBottom: '1rem',
   padding: '1rem',
   boxShadow: '0px 0px 4px rgba(0,0,0,20%)',
+});
+
+const NavContent = styled.div({
+  display: 'flex',
+  justifyContent: 'space-around',
+  width: '50%',
 });
 
 const CollectionContainer = styled.div({
@@ -45,7 +55,25 @@ function Collection({ children }) {
 
   return (
     <div>
-      <NavbarContainer>{name ? name : ''}</NavbarContainer>
+      <NavbarContainer>
+        {name ? (
+          <NavContent>
+            <div>
+              <Link to={`/collections/${id}/tree`}>Tree</Link>
+            </div>
+            <div>
+              <Link to={`/collections/${id}`} css={homeLink}>
+                {name}
+              </Link>
+            </div>
+            <div>
+              <Link to={`/collections/${id}/inventory`}>Inventory</Link>
+            </div>
+          </NavContent>
+        ) : (
+          ''
+        )}
+      </NavbarContainer>
       <CollectionContainer>{children}</CollectionContainer>
     </div>
   );
