@@ -19,6 +19,7 @@ const FormGroup = styled.div({
 
 const Row = styled.div({
   display: 'flex',
+  flexWrap: 'wrap',
 });
 
 function HomeScreen() {
