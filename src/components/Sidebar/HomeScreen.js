@@ -69,7 +69,7 @@ function HomeScreen() {
         </FormGroup>
         <FormGroup>
           <Row>
-            <label htmlFor="tier">Tier:</label>
+            <label htmlFor="tier">{`${collection.tierType}: `}</label>
             <input
               id="tier"
               type="number"

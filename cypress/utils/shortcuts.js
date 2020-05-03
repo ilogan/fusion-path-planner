@@ -1,11 +1,11 @@
-export function addCollection({ name, tier, isPrefix, node }) {
+export function addCollection({ name, tierType, isPrefix, nodeType }) {
   cy.get('#collection').type(name);
-  cy.get('#tier').type(tier);
+  cy.get('#tierType').type(tierType);
   if (!isPrefix) cy.get('#post').click();
-  cy.get('#node').type(node);
+  cy.get('#nodeType').type(nodeType);
   cy.get('button').contains('Add').click();
   cy.get('table')
     .should('contain', name)
-    .and('contain', tier)
-    .and('contain', node);
+    .and('contain', tierType)
+    .and('contain', nodeType);
 }

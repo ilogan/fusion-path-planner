@@ -3,13 +3,14 @@
     {
       "id": 1,
       "name": "Creature Game",
-      "tier": "Stars",
+      "tierType": "Stars",
       "isPrefix": false,
-      "node": "Creature",
+      "nodeType": "Creature",
       "wrappers": [
         {
+          "id": "1",
           "name": "S0",
-          "stars": "0",
+          "tier": "0",
           "children": [],
           "subwrappers": [
             {
@@ -23,8 +24,9 @@
           ]
         },
         {
+          "id": "2",
           "name": "S1",
-          "stars": "1",
+          "tier": "1",
           "children": [],
           "subwrappers": [
             {
@@ -42,9 +44,10 @@
     {
       "id": 2,
       "name": "Crafting Game",
-      "tier": "Tier",
+      "tierType": "Tier",
       "isPrefix": true,
-      "node": "Item"
+      "nodeType": "Item",
+      "wrappers": []
     }
   ]
 }

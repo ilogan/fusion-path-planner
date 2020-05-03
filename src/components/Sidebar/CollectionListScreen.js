@@ -23,8 +23,8 @@ const Row = styled.div({
 function CollectionListScreen() {
   const { collections, setCollections } = useCollections();
   const [collectionName, setCollectionName] = useState('');
-  const [tierName, setTierName] = useState('');
-  const [nodeName, setNodeName] = useState('');
+  const [tierType, setTierType] = useState('');
+  const [nodeType, setNodeType] = useState('');
   const [isPrefix, setIsPrefix] = useState(true);
 
   const handleSubmit = (e) => {
@@ -34,16 +34,16 @@ function CollectionListScreen() {
       {
         id: collections.length + 1,
         name: collectionName,
-        tier: tierName,
+        tierType,
         isPrefix,
-        node: nodeName,
+        nodeType,
         wrappers: [],
       },
     ]);
     setCollectionName('');
-    setTierName('');
+    setTierType('');
     setIsPrefix(true);
-    setNodeName('');
+    setNodeType('');
   };
 
   return (
@@ -60,12 +60,12 @@ function CollectionListScreen() {
           />
         </FormGroup>
         <FormGroup>
-          <label htmlFor="tier">Tier name:</label>
+          <label htmlFor="tierType">Tier name:</label>
           <input
-            id="tier"
+            id="tierType"
             type="text"
-            value={tierName}
-            onChange={(e) => setTierName(e.target.value)}
+            value={tierType}
+            onChange={(e) => setTierType(e.target.value)}
           />
           <Row
             css={{
@@ -101,12 +101,12 @@ function CollectionListScreen() {
           </Row>
         </FormGroup>
         <FormGroup>
-          <label htmlFor="node">Node name:</label>
+          <label htmlFor="nodeType">Node name:</label>
           <input
-            id="node"
+            id="nodeType"
             type="text"
-            value={nodeName}
-            onChange={(e) => setNodeName(e.target.value)}
+            value={nodeType}
+            onChange={(e) => setNodeType(e.target.value)}
           />
         </FormGroup>
         <FormGroup>

@@ -46,8 +46,8 @@ function CollectionListScreen() {
                 <td>
                   <Link to={`/collections/${c.id}`}>{c.name}</Link>
                 </td>
-                <td>{c.tier}</td>
-                <td>{c.node}</td>
+                <td>{c.tierType}</td>
+                <td>{c.nodeType}</td>
               </tr>
             ))}
           </tbody>
