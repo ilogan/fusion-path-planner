@@ -6,6 +6,7 @@ import { Router, Link } from '@reach/router';
 
 import CollectionListScreen from './CollectionListScreen';
 import HomeScreen from './HomeScreen';
+import TreeScreen from './TreeScreen';
 
 // SIDEBAR
 const SidebarContainer = styled.aside({
@@ -53,6 +54,7 @@ function SidebarRoutes() {
 
       <Collection path="collections/:id">
         <HomeScreen path="/" />
+        <TreeScreen path="/tree" />
       </Collection>
     </Router>
   );
