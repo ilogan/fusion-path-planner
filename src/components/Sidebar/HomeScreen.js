@@ -30,6 +30,7 @@ function HomeScreen() {
         name: wrapperName,
         tier: +tier,
         fields,
+        nodes: [],
       },
     ];
     setCollection({ ...collection, wrappers: updatedWrappers });

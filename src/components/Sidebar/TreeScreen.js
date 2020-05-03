@@ -11,7 +11,7 @@ import {
   PrimarySubmitButton,
 } from './Forms';
 
-function HomeScreen() {
+function TreeScreen() {
   /*
    * STATE
    */
@@ -31,27 +31,38 @@ function HomeScreen() {
     selectedWrapperTemplate
   );
 
-  const childrenToAddTemplate = { name: 'null' };
-  const [childrenToAdd, setChildrenToAdd] = useState([]);
+  const childrenTemplate = { name: '' };
+  const [children, setChildren] = useState([]);
 
   const fieldTemplate = { label: '', value: '' };
   const [fields, setFields] = useState([]);
+  console.log('wrappers', wrappers);
 
   /*
    * STATE MANAGEMENT
    */
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedWrappers = [
-      ...collection.selectedW,
-      {
-        id: collection.selectedW.length + 1,
-        name: nodeName,
-        fields,
-      },
-    ];
+    const childrenToAdd = children.filter((c) => c.name !== '');
+    const updatedWrappers = wrappers.map((w) => {
+      if (w.id === selectedWrapper.id) {
+        const updatedNodes = [
+          ...w.nodes,
+          {
+            id: w.nodes.length + 1,
+            name: nodeName,
+            children: childrenToAdd,
+            fields,
+          },
+        ];
+        return { ...w, nodes: updatedNodes };
+      }
+      return w;
+    });
+
     setCollection({ ...collection, wrappers: updatedWrappers });
     setNodeName('');
+    setChildren([]);
     setFields([]);
   };
 
@@ -65,15 +76,14 @@ function HomeScreen() {
   /* Dynamic Forms */
   // child <select>
   function addChild() {
-    setChildrenToAdd([...childrenToAdd, { ...childrenToAddTemplate }]);
+    setChildren([...children, { ...childrenTemplate }]);
   }
 
   function handleChildChange(e) {
     const targetIndex = Number(e.target.dataset.i);
-    const updatedChildren = [...childrenToAdd];
+    const updatedChildren = [...children];
     updatedChildren[targetIndex][e.target.name] = e.target.value;
-    console.log('up children', updatedChildren);
-    setChildrenToAdd(updatedChildren);
+    setChildren(updatedChildren);
   }
 
   // field <input>
@@ -124,7 +134,7 @@ function HomeScreen() {
           <SecondaryButton onClick={addChild}>+ Add Child</SecondaryButton>
         </FormGroup>
         <ChildSelects
-          selects={childrenToAdd}
+          selects={children}
           handleChange={handleChildChange}
           wrappers={wrappers}
           currentWrapper={selectedWrapper}
@@ -250,4 +260,4 @@ function WrapperPresets({ tierType, wrapper }) {
   );
 }
 
-export default HomeScreen;
+export default TreeScreen;
