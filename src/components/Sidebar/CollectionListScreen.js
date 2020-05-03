@@ -3,7 +3,7 @@ import { jsx } from '@emotion/core';
 
 import { useState } from 'react';
 import { useCollections } from '../../context/collectionsContext';
-import { FormContainer, FormGroup, Row } from './Forms';
+import { FormContainer, FormGroup, Row, PrimarySubmitButton } from './Forms';
 
 function CollectionListScreen() {
   const { collections, setCollections } = useCollections();
@@ -95,7 +95,7 @@ function CollectionListScreen() {
           />
         </FormGroup>
         <FormGroup>
-          <button type="submit">+ Add</button>
+          <PrimarySubmitButton>Create Collection</PrimarySubmitButton>
         </FormGroup>
       </FormContainer>
     </div>

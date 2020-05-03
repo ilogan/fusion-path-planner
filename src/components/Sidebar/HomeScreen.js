@@ -3,7 +3,13 @@ import { jsx } from '@emotion/core';
 
 import { useState, Fragment } from 'react';
 import { useCollections } from '../../context/collectionsContext';
-import { FormContainer, FormGroup, Row } from './Forms';
+import {
+  FormContainer,
+  FormGroup,
+  Row,
+  SecondaryButton,
+  PrimarySubmitButton,
+} from './Forms';
 
 function HomeScreen() {
   // global state
@@ -102,12 +108,10 @@ function HomeScreen() {
           );
         })}
         <FormGroup>
-          <button type="button" onClick={addField}>
-            + Add Field
-          </button>
+          <SecondaryButton onClick={addField}>+ Add Field</SecondaryButton>
         </FormGroup>
         <FormGroup>
-          <button type="submit">Finalize Wrapper</button>
+          <PrimarySubmitButton>Finalize Wrapper</PrimarySubmitButton>
         </FormGroup>
       </FormContainer>
     </div>
