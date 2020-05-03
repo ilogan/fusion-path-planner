@@ -1,4 +1,8 @@
-import { addCollection, addWrapperWithFields } from '../utils/shortcuts';
+import {
+  addCollection,
+  addWrapperWithFields,
+  addWrapper,
+} from '../utils/shortcuts';
 
 describe('The Collection Screen', () => {
   beforeEach(function () {
@@ -29,7 +33,13 @@ describe('The Collection Screen', () => {
   });
 
   it('can enter a wrapper with fields', function () {
-    const craftingWrapper = this.craftingCollection.wrappers[0];
-    addWrapperWithFields(craftingWrapper);
+    addWrapperWithFields(this.craftingCollection.wrappers[0]);
+    addWrapper(this.craftingCollection.wrappers[1]);
+    addWrapper(this.craftingCollection.wrappers[2]);
+    addWrapper(this.craftingCollection.wrappers[3]);
+    addWrapper(this.craftingCollection.wrappers[4]);
+    addWrapper(this.craftingCollection.wrappers[5]);
+    addWrapper(this.craftingCollection.wrappers[6]);
+    addWrapper(this.craftingCollection.wrappers[7]);
   });
 });

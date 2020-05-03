@@ -12,12 +12,20 @@ export function addCollection({ name, tierType, isPrefix, nodeType }) {
 
 export function addWrapperWithFields({ name, tier, fields }) {
   cy.get('#wrapper').type(name);
-  cy.get('#tier').type(tier);
+  if (+tier !== 0) cy.get('#tier').type(tier);
   for (let i = 0; i < fields.length; i++) {
     cy.get('button').contains('+ Add Field').click();
     cy.get(`#label-${i}`).type(fields[i]['label']);
     cy.get(`#value-${i}`).type(fields[i]['value']);
   }
+  cy.get('button').contains('Finalize Wrapper').click();
+  cy.contains(name);
+  cy.contains(tier);
+}
+
+export function addWrapper({ name, tier }) {
+  cy.get('#wrapper').type(name);
+  cy.get('#tier').type(tier);
   cy.get('button').contains('Finalize Wrapper').click();
   cy.contains(name);
   cy.contains(tier);
