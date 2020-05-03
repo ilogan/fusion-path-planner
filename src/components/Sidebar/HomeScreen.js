@@ -3,6 +3,7 @@ import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import { useState, Fragment } from 'react';
+import { useCollections } from '../../context/collectionsContext';
 
 const FormContainer = styled.form({
   padding: '.75rem',
@@ -21,6 +22,10 @@ const Row = styled.div({
 });
 
 function HomeScreen() {
+  // global state
+  const { collection, setCollection } = useCollections();
+
+  // local state
   const [wrapperName, setWrapperName] = useState('');
   const [tier, setTier] = useState(0);
   const [fields, setFields] = useState([]);
@@ -28,7 +33,11 @@ function HomeScreen() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(wrapperName, tier, fields);
+    const updatedWrappers = [
+      ...collection.wrappers,
+      { id: collection.wrappers.length + 1, name: wrapperName, tier, fields },
+    ];
+    setCollection({ ...collection, wrappers: updatedWrappers });
     setWrapperName('');
     setTier('');
     setFields([]);

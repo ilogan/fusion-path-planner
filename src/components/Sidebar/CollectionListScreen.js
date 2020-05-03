@@ -37,6 +37,7 @@ function CollectionListScreen() {
         tier: tierName,
         isPrefix,
         node: nodeName,
+        wrappers: [],
       },
     ]);
     setCollectionName('');

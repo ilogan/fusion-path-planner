@@ -40,7 +40,7 @@ function Collection({ children }) {
   useEffect(() => {
     const currentCollection = collections.find((c) => c.id === id);
     if (currentCollection) setCollection(currentCollection);
-  }, [id, collections, setCollection, collection]);
+  }, [id, collections, setCollection]);
 
   return (
     <div>
