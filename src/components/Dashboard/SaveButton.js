@@ -15,12 +15,9 @@ function SaveButton() {
   const { collections, collection, setCollections } = useCollections();
 
   function handleClick() {
-    console.log(collections);
-
     const updatedCollections = collections.map((c) =>
       c.id === collection.id ? collection : c
     );
-    console.log(updatedCollections);
     setCollections(updatedCollections);
   }
 
