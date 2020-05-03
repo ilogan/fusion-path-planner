@@ -3,6 +3,7 @@ import { jsx, css } from '@emotion/core';
 
 import styled from '@emotion/styled';
 import { useCollections } from '../../context/collectionsContext';
+import SaveButton from './SaveButton';
 
 /*
  * /collections/:id
@@ -73,7 +74,10 @@ function HomeScreen() {
   const { name } = collection;
   return collection.name ? (
     <div>
-      <h1>{name} Dashboard</h1>
+      <div css={{ display: 'flex', justifyContent: 'space-between' }}>
+        <h1>{name} Dashboard</h1>
+        <SaveButton />
+      </div>
       <div>
         <h2>Wrappers</h2>
         <CardsContainer>

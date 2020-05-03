@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 import { useLocation } from '@reach/router';
 import { useCollections } from '../../context/collectionsContext';
+
 /*
  * /collections/:id
  */
