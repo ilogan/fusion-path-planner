@@ -12,12 +12,16 @@ import {
 } from './Forms';
 
 function HomeScreen() {
+  /*
+   * STATE
+   */
   // global state
   const { collection, setCollection } = useCollections();
   const { nodeType, wrappers, tierType } = collection;
 
   // local state
   const [nodeName, setNodeName] = useState('');
+
   const selectedWrapperTemplate = {
     name: 'n/a',
     tier: null,
@@ -26,9 +30,16 @@ function HomeScreen() {
   const [selectedWrapper, setSelectedWrapper] = useState(
     selectedWrapperTemplate
   );
-  const [fields, setFields] = useState([]);
-  const fieldTemplate = { label: '', value: '' };
 
+  const childrenToAddTemplate = { name: 'null' };
+  const [childrenToAdd, setChildrenToAdd] = useState([]);
+
+  const fieldTemplate = { label: '', value: '' };
+  const [fields, setFields] = useState([]);
+
+  /*
+   * STATE MANAGEMENT
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedWrappers = [
@@ -44,14 +55,28 @@ function HomeScreen() {
     setFields([]);
   };
 
-  // wrappers
+  // wrapper <select>
   function handleSelectedWrapperChange(e) {
     const currWrapper = wrappers.find((w) => w.name === e.target.value);
     if (!currWrapper) return setSelectedWrapper(selectedWrapperTemplate);
     setSelectedWrapper(currWrapper);
   }
 
-  // fields
+  /* Dynamic Forms */
+  // child <select>
+  function addChild() {
+    setChildrenToAdd([...childrenToAdd, { ...childrenToAddTemplate }]);
+  }
+
+  function handleChildChange(e) {
+    const targetIndex = Number(e.target.dataset.i);
+    const updatedChildren = [...childrenToAdd];
+    updatedChildren[targetIndex][e.target.name] = e.target.value;
+    console.log('up children', updatedChildren);
+    setChildrenToAdd(updatedChildren);
+  }
+
+  // field <input>
   function addField() {
     setFields([...fields, { ...fieldTemplate }]);
   }
@@ -63,6 +88,9 @@ function HomeScreen() {
     setFields(updatedFields);
   }
 
+  /*
+   * VIEW
+   */
   return (
     <div>
       <label htmlFor="wrapper">Wrapper:</label>
@@ -92,6 +120,15 @@ function HomeScreen() {
             onChange={(e) => setNodeName(e.target.value)}
           />
         </FormGroup>
+        <FormGroup>
+          <SecondaryButton onClick={addChild}>+ Add Child</SecondaryButton>
+        </FormGroup>
+        <ChildSelects
+          selects={childrenToAdd}
+          handleChange={handleChildChange}
+          wrappers={wrappers}
+          currentWrapper={selectedWrapper}
+        />
         {fields.map((f, i) => {
           const fieldId = `field-${i}`;
           const labelId = `label-${i}`;
@@ -136,6 +173,38 @@ function HomeScreen() {
   );
 }
 
+//? handles logic for creating new <select> elements for children
+function ChildSelects({ selects, handleChange, wrappers, currentWrapper }) {
+  return selects.map((s, i) => {
+    const childId = `child-select-${i}`;
+    const labelId = `child-label-${i}`;
+    return (
+      <FormGroup key={childId}>
+        <label htmlFor={labelId}>{`Child #${i + 1}: `}</label>
+        <select
+          id={labelId}
+          name="name"
+          value={s.name}
+          data-i={i}
+          onChange={handleChange}
+        >
+          <option value="">n/a</option>
+          {wrappers
+            .filter((w) => w.tier < currentWrapper.tier)
+            .map((w) => {
+              const optionId = `${childId}-${w.name}`;
+              return (
+                <option key={optionId} value={w.name}>
+                  {w.name}
+                </option>
+              );
+            })}
+        </select>
+      </FormGroup>
+    );
+  });
+}
+
 const WrapperPresetsContainer = styled.div({
   display: 'flex',
   flexDirection: 'column',
@@ -153,8 +222,8 @@ const WrapperPresetContent = styled.div({
   fontStyle: 'italic',
 });
 
+//? handles logic for showing wrapper attributes above form inputs
 function WrapperPresets({ tierType, wrapper }) {
-  console.log(wrapper);
   return (
     <WrapperPresetsContainer>
       <WrapperPresetsHeading>Wrapper Presets</WrapperPresetsHeading>
