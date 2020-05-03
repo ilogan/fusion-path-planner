@@ -5,7 +5,39 @@
       "name": "Creature Game",
       "tier": "Stars",
       "isPrefix": false,
-      "node": "Creature"
+      "node": "Creature",
+      "wrappers": [
+        {
+          "name": "S0",
+          "stars": "0",
+          "children": [],
+          "subwrappers": [
+            {
+              "name": "Green",
+              "faction": "green"
+            },
+            {
+              "name": "Blue",
+              "faction": "blue"
+            }
+          ]
+        },
+        {
+          "name": "S1",
+          "stars": "1",
+          "children": [],
+          "subwrappers": [
+            {
+              "name": "Green",
+              "faction": "green"
+            },
+            {
+              "name": "Blue",
+              "faction": "blue"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": 2,
