@@ -2,7 +2,7 @@
 import { jsx } from '@emotion/core';
 import styled from '@emotion/styled';
 
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 
 const FormContainer = styled.form({
   padding: '.75rem',
@@ -23,13 +23,27 @@ const Row = styled.div({
 function HomeScreen() {
   const [wrapperName, setWrapperName] = useState('');
   const [tier, setTier] = useState(0);
+  const [fields, setFields] = useState([]);
+  const fieldTemplate = { label: '', value: '' };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(wrapperName, tier);
+    console.log(wrapperName, tier, fields);
     setWrapperName('');
     setTier('');
+    setFields([]);
   };
+
+  function addField() {
+    setFields([...fields, { ...fieldTemplate }]);
+  }
+
+  function handleFieldChange(e) {
+    const targetIndex = Number(e.target.dataset.i);
+    const updatedFields = [...fields];
+    updatedFields[targetIndex][e.target.name] = e.target.value;
+    setFields(updatedFields);
+  }
 
   return (
     <div>
@@ -56,8 +70,43 @@ function HomeScreen() {
             />
           </Row>
         </FormGroup>
+        {fields.map((f, i) => {
+          const fieldId = `field-${i}`;
+          const labelId = `label-${i}`;
+          const valueId = `value-${i};`;
+          return (
+            <Fragment key={fieldId}>
+              <FormGroup>
+                <label htmlFor={labelId}>{`Label #${i + 1}: `}</label>
+                <input
+                  id={labelId}
+                  name="label"
+                  data-i={i}
+                  type="text"
+                  value={f.label}
+                  onChange={handleFieldChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label htmlFor={valueId}>
+                  {f.label ? `${f.label}:` : '(create a label)'}
+                </label>
+                <input
+                  id={valueId}
+                  name="value"
+                  data-i={i}
+                  type="text"
+                  value={f.value}
+                  onChange={handleFieldChange}
+                />
+              </FormGroup>
+            </Fragment>
+          );
+        })}
         <FormGroup>
-          <button type="button">+ Add Field</button>
+          <button type="button" onClick={addField}>
+            + Add Field
+          </button>
         </FormGroup>
         <FormGroup>
           <button type="submit">Finalize Wrapper</button>
