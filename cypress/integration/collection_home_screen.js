@@ -50,4 +50,8 @@ describe('The Collection Screen', () => {
     cy.get('table').contains(this.craftingCollection.name).click();
     cy.contains(this.craftingCollection.wrappers[1].name);
   });
+
+  it('links to the tree screen', function () {
+    cy.contains('Tree').click();
+  });
 });
