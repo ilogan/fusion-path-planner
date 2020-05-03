@@ -1,4 +1,4 @@
-import { addCollection } from '../utils/shortcuts';
+import { addCollection, addWrapperWithFields } from '../utils/shortcuts';
 
 describe('The Collection Screen', () => {
   beforeEach(function () {
@@ -26,5 +26,10 @@ describe('The Collection Screen', () => {
   it('has the name of the collection in the nav bar', function () {
     const name = this.craftingCollection.name;
     cy.contains(name);
+  });
+
+  it('can enter a wrapper with fields', function () {
+    const craftingWrapper = this.craftingCollection.wrappers[0];
+    addWrapperWithFields(craftingWrapper);
   });
 });

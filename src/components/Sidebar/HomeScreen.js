@@ -82,7 +82,7 @@ function HomeScreen() {
         {fields.map((f, i) => {
           const fieldId = `field-${i}`;
           const labelId = `label-${i}`;
-          const valueId = `value-${i};`;
+          const valueId = `value-${i}`;
           return (
             <Fragment key={fieldId}>
               <FormGroup>

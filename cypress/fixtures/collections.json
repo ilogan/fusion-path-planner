@@ -11,6 +11,10 @@
           "id": "1",
           "name": "S0",
           "tier": "0",
+          "fields": [
+            { "label": "Race", "value": "Goblin" },
+            { "label": "Faction", "value": "Green" }
+          ],
           "children": [],
           "subwrappers": [
             {
@@ -47,7 +51,25 @@
       "tierType": "Tier",
       "isPrefix": true,
       "nodeType": "Item",
-      "wrappers": []
+      "wrappers": [
+        {
+          "id": "1",
+          "name": "T0",
+          "tier": "0",
+          "fields": [{ "label": "Type", "value": "Ore" }],
+          "children": [],
+          "subwrappers": [
+            {
+              "name": "Green",
+              "faction": "green"
+            },
+            {
+              "name": "Blue",
+              "faction": "blue"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
