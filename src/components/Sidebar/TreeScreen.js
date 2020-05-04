@@ -36,7 +36,6 @@ function TreeScreen() {
 
   const fieldTemplate = { label: '', value: '' };
   const [fields, setFields] = useState([]);
-  console.log('wrappers', wrappers);
 
   /*
    * STATE MANAGEMENT
