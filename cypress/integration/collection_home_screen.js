@@ -1,8 +1,4 @@
-import {
-  addCollection,
-  addWrapperWithFields,
-  addWrapper,
-} from '../utils/shortcuts';
+import { addCollection, addWrapper } from '../utils/shortcuts';
 
 describe('The Collection Screen', () => {
   beforeEach(function () {
@@ -34,7 +30,8 @@ describe('The Collection Screen', () => {
   });
 
   it('can enter a wrapper with fields', function () {
-    addWrapperWithFields(this.craftingCollection.wrappers[0]);
+    // addWrapperWithFields(this.craftingCollection.wrappers[0]);
+    addWrapper(this.craftingCollection.wrappers[0]);
     addWrapper(this.craftingCollection.wrappers[1]);
     addWrapper(this.craftingCollection.wrappers[2]);
     addWrapper(this.craftingCollection.wrappers[3]);
@@ -53,5 +50,27 @@ describe('The Collection Screen', () => {
 
   it('links to the tree screen', function () {
     cy.contains('Tree').click();
+  });
+
+  it('can enter an item with no children or fields', function () {
+    cy.get('#wrapper').select('T0');
+    cy.get('#nodeType').type('Dirt');
+    cy.contains('Finalize Item').click();
+    cy.get('#wrapper').select('T1');
+    cy.get('#nodeType').type('Copper Ore');
+    cy.contains('Finalize Item').click();
+    cy.get('#wrapper').select('T1');
+    cy.get('#nodeType').type('Iron Ore');
+    cy.contains('Finalize Item').click();
+    cy.get('#wrapper').select('T2');
+    cy.get('#nodeType').type('Copper Bar');
+    cy.contains('Finalize Item').click();
+    cy.get('#wrapper').select('T2');
+    cy.get('#nodeType').type('Iron Bar');
+    cy.contains('Finalize Item').click();
+    cy.get('#wrapper').select('T3');
+    cy.get('#nodeType').type('Iron Helmet');
+    cy.contains('Finalize Item').click();
+    cy.contains('Save').click();
   });
 });
